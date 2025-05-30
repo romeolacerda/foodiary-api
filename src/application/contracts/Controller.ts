@@ -1,5 +1,4 @@
-import { z } from "zod";
-import { getSchema } from "../../kernel/decorators/schema";
+import { getSchema } from "@kernel/decorators/schema"
 
 export abstract class Controller<TBody = undefined> {
   protected abstract handle(request: Controller.Request): Promise<Controller.Response<TBody>>
