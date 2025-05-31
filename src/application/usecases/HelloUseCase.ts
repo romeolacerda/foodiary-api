@@ -1,21 +1,20 @@
-import { Injectable } from "@kernel/di/Injectable"
+import { Injectable } from "@kernel/di/Injectable";
 
 @Injectable()
-export class HelloUseCase{
-  async execute(input: HelloUseCase.Input): Promise<HelloUseCase.Output>{
+export class HelloUseCase {
+  async execute(input: HelloUseCase.Input): Promise<HelloUseCase.Output> {
     return {
-      helloUseCase: input.email
-    }
+      helloUseCase: input.email,
+    };
   }
 }
 
 export namespace HelloUseCase {
   export type Input = {
-    email:string
-  }
-
+    email: string;
+  };
 
   export type Output = {
-    helloUseCase: string
-  }
+    helloUseCase: string;
+  };
 }

@@ -1,8 +1,8 @@
 import z from "zod";
 
 export const helloSchema = z.object({
-  name: z.string().min(1, 'Name is required'),
-  email: z.string().min(1, 'Required is required').email('Invalid email')
-})
+  name: z.string().min(1, "Name is required"),
+  email: z.string().min(1, "Required is required").email("Invalid email"),
+});
 
-export type HelloBody = z.infer<typeof helloSchema>
+export type HelloBody = z.infer<typeof helloSchema>;

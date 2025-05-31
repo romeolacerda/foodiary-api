@@ -16,7 +16,6 @@ build:
   esbuild:
     configFile: ./esbuild.config.mjs
 
-
 functions:
   hello:
     handler: src/main/functions/hello.handler
