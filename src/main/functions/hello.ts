@@ -1,9 +1,10 @@
 import 'reflect-metadata'
+
 import { HelloController } from '@application/controllers/HelloController'
+import { Registry } from '@kernel/di/Registry'
 import { lambdaHttpAdapter } from '@main/adapters/lambdaHttpAdapter'
-import { HelloUseCase } from 'src/usecases/HelloUseCase'
 
 
-const controller = new HelloController(new HelloUseCase())
+const controller = Registry.getInstance().resolve(HelloController)
 
 export const handler = lambdaHttpAdapter(controller)
