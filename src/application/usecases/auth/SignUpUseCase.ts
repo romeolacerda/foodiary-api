@@ -6,10 +6,16 @@ export class SignUpUseCase {
   constructor(private readonly authGateway: AuthGateway) { }
 
   async execute({ email, password }: SignUpUseCase.Input): Promise<SignUpUseCase.Output> {
-    const { externalId } = await this.authGateway.signUp({ email, password })
+    await this.authGateway.signUp({ email, password })
+
+    const {
+      accessToken,
+      refreshToken
+    } = await this.authGateway.signIn({ email, password })
+
     return {
-      accessToken: "accessToken gerado",
-      refreshToken: "refreshToken gerado"
+      accessToken,
+      refreshToken
     };
   }
 }
