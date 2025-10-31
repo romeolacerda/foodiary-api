@@ -17,7 +17,7 @@ export default defineConfig([
       "space-before-function-paren": ["error", "never"],
       "arrow-spacing": ["error", { before: true, after: true }],
       "key-spacing": ["error", { beforeColon: false, afterColon: true }],
-      "no-multiline-empty-lines": ["error", { max: 1 }],
+      "no-multiple-empty-lines": ["error", { max: 1 }],
       "eol-last": ["error", "always"],
       eqeqeq: ["error", "always"],
       curly: ["error", "all"],
@@ -26,11 +26,11 @@ export default defineConfig([
       "@typescript-eslint/naming-convention": [
         "error",
         {
-          select: "interface",
+          selector: "interface",
           format: ["PascalCase"],
           custom: {
             regex: "^I[A-Z]",
-            mathc: true,
+            match: true,
           },
         },
       ],
