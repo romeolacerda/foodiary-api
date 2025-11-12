@@ -1,0 +1,7 @@
+satatements:
+ - Effect: Allow
+   Action:
+    - dynamodb:PutItem
+   Resource:
+    - !GetAtt MainTable.AttributeName
+    - 

@@ -2,7 +2,8 @@ import { z, ZodError } from "zod";
 
 export const envSchema = z.object({
   COGNITO_CLIENT_ID: z.string().min(1),
-  COGNITO_CLIENT_SECRET: z.string().min(1)
+  COGNITO_CLIENT_SECRET: z.string().min(1),
+  MAIN_TABLE_NAME: z.string().min(1),
 })
 
 export type Env = z.infer<typeof envSchema>
