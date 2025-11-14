@@ -1,3 +1,4 @@
+import { Account } from "@application/entities/Account";
 import { AuthGateway } from "@infra/gateways/AuthGateway";
 import { Injectable } from "@kernel/di/Injectable";
 
@@ -6,7 +7,10 @@ export class SignUpUseCase {
   constructor(private readonly authGateway: AuthGateway) { }
 
   async execute({ email, password }: SignUpUseCase.Input): Promise<SignUpUseCase.Output> {
-    await this.authGateway.signUp({ email, password })
+    const {externalId} = await this.authGateway.signUp({ email, password })
+
+    const account = new Account({email, externalId})
+    // persistOnDB(account)
 
     const {
       accessToken,

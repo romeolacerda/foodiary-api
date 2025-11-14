@@ -26,6 +26,7 @@
   },
   "dependencies": {
     "@aws-sdk/client-cognito-identity-provider": "^3.848.0",
+    "ksuid": "^3.0.0",
     "reflect-metadata": "^0.2.2"
   }
 }
