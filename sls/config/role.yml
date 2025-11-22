@@ -1,7 +1,8 @@
-satatements:
- - Effect: Allow
-   Action:
-    - dynamodb:PutItem
-   Resource:
-    - !GetAtt MainTable.AttributeName
-    - 
+statements:
+  - Effect: Allow
+    Action:
+      - dynamodb:PutItem
+      - dynamodb:Query
+    Resource:
+      - !GetAtt MainTable.Arn
+      - !Sub '${MainTable.Arn}/index/*'

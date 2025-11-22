@@ -5,7 +5,7 @@ service: foodiary-api
 
 provider:
   name: aws
-  region: sa-east-1
+  region: us-east-1
   runtime: nodejs22.x
   memorySize: 128
   stage: ${opt:stage, 'dev'}

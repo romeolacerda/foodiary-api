@@ -13,14 +13,27 @@ export class AccountItem {
         }
     }
 
-    toItem(){
-        return {}
+    toItem(): AccountItem.ItemType {
+        return {
+            ...this.keys,
+            ...this.attr,
+            type: this.type
+        }
     }
 
     static fromEntity(account: Account) {
         return new AccountItem({
             ...account,
             createdAt: account.createdAt.toISOString(),
+        })
+    }
+
+    static toEntity(accountItem: AccountItem.ItemType) {
+        return new Account({
+            id: accountItem.id,
+            email: accountItem.email,
+            externalId: accountItem.externalId,
+            createdAt: new Date(accountItem.createdAt)
         })
     }
 
