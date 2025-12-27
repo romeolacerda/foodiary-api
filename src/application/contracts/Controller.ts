@@ -1,4 +1,4 @@
-import { getSchema } from "@kernel/decorators/schema";
+import { getSchema } from '@kernel/decorators/schema';
 
 export abstract class Controller<TBody = undefined> {
   protected abstract handle(
@@ -16,7 +16,7 @@ export abstract class Controller<TBody = undefined> {
     });
   }
 
-  private validateBody(body: Controller.Request["body"]) {
+  private validateBody(body: Controller.Request['body']) {
     const schema = getSchema(this);
     if (!schema) {
       return body;

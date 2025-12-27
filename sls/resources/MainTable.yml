@@ -31,4 +31,3 @@ Resources:
               KeyType: HASH
             - AttributeName: GSI1SK
               KeyType: RANGE
-        

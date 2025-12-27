@@ -1,22 +1,22 @@
-import { AuthGateway } from "@infra/gateways/AuthGateway";
-import { Injectable } from "@kernel/di/Injectable";
+import { AuthGateway } from '@infra/gateways/AuthGateway';
+import { Injectable } from '@kernel/di/Injectable';
 
 @Injectable()
 export class SignInUseCase {
-  constructor(
-    private readonly authGateway: AuthGateway,
-  ) { }
+  constructor(private readonly authGateway: AuthGateway) {}
 
-  async execute({ email, password }: SignInUseCase.Input): Promise<SignInUseCase.Output> {
-
-    const {
-      accessToken,
-      refreshToken
-    } = await this.authGateway.signIn({ email, password })
+  async execute({
+    email,
+    password,
+  }: SignInUseCase.Input): Promise<SignInUseCase.Output> {
+    const { accessToken, refreshToken } = await this.authGateway.signIn({
+      email,
+      password,
+    });
 
     return {
       accessToken,
-      refreshToken
+      refreshToken,
     };
   }
 }
@@ -24,11 +24,11 @@ export class SignInUseCase {
 export namespace SignInUseCase {
   export type Input = {
     email: string;
-    password: string
+    password: string;
   };
 
   export type Output = {
     accessToken: string;
-    refreshToken: string
+    refreshToken: string;
   };
 }

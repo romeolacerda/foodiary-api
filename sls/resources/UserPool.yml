@@ -22,16 +22,16 @@ Resources:
           RequireSymbols: false
           RequireUppercase: false
   UserPoolClient:
-      Type: AWS::Cognito::UserPoolClient
-      Properties:
-        ClientName: ${self:service}-${self:provider.stage}-UserPoolClient
-        UserPoolId: !Ref UserPool
-        GenerateSecret: true  
-        ExplicitAuthFlows:
-          - ALLOW_USER_PASSWORD_AUTH
-        TokenValidityUnits:
-          AccessToken: hours
-        AccessTokenValidity: 12
-        RefreshTokenRotation:
-          Feature: ENABLED
-          RetryGracePeriodSeconds: 0
+    Type: AWS::Cognito::UserPoolClient
+    Properties:
+      ClientName: ${self:service}-${self:provider.stage}-UserPoolClient
+      UserPoolId: !Ref UserPool
+      GenerateSecret: true
+      ExplicitAuthFlows:
+        - ALLOW_USER_PASSWORD_AUTH
+      TokenValidityUnits:
+        AccessToken: hours
+      AccessTokenValidity: 12
+      RefreshTokenRotation:
+        Feature: ENABLED
+        RetryGracePeriodSeconds: 0
