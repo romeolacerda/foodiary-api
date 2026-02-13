@@ -1,4 +1,5 @@
 import {
+  GetTokensFromRefreshTokenCommand,
   InitiateAuthCommand,
   SignUpCommand,
 } from '@aws-sdk/client-cognito-identity-provider';
@@ -9,7 +10,7 @@ import { createHmac } from 'node:crypto';
 
 @Injectable()
 export class AuthGateway {
-  constructor(private readonly appConfig: AppConfig) { }
+  constructor(private readonly appConfig: AppConfig) {}
 
   async signIn({
     email,
@@ -49,9 +50,7 @@ export class AuthGateway {
       ClientId: this.appConfig.auth.cognito.client.id,
       Username: email,
       Password: password,
-      UserAttributes: [
-        { Name: 'custom:internalId', Value: internalId },
-      ],
+      UserAttributes: [{ Name: 'custom:internalId', Value: internalId }],
       SecretHash: this.getSecretHash(email),
     });
 
@@ -62,6 +61,30 @@ export class AuthGateway {
     }
 
     return { externalId };
+  }
+
+  async refreshToken({
+    refreshToken,
+  }: AuthGateway.RefreshTokenParams): Promise<AuthGateway.RefreshTokenResult> {
+    const command = new GetTokensFromRefreshTokenCommand({
+      ClientId: this.appConfig.auth.cognito.client.id,
+      RefreshToken: refreshToken,
+      ClientSecret: this.appConfig.auth.cognito.client.secret,
+    });
+
+    const { AuthenticationResult } = await cognitoClient.send(command);
+
+    if (
+      !AuthenticationResult?.AccessToken ||
+      !AuthenticationResult.RefreshToken
+    ) {
+      throw new Error('Cannot refresh token');
+    }
+
+    return {
+      accessToken: AuthenticationResult.AccessToken,
+      refreshToken: AuthenticationResult.RefreshToken,
+    };
   }
 
   private getSecretHash(email: string): string {
@@ -90,6 +113,16 @@ export namespace AuthGateway {
   };
 
   export type SignInResult = {
+    accessToken: string;
+    refreshToken: string;
+  };
+
+  export type RefreshTokenParams = {
+    accessToken: string;
+    refreshToken: string;
+  };
+
+  export type RefreshTokenResult = {
     accessToken: string;
     refreshToken: string;
   };
