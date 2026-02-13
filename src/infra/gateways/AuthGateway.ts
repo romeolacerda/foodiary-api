@@ -118,7 +118,6 @@ export namespace AuthGateway {
   };
 
   export type RefreshTokenParams = {
-    accessToken: string;
     refreshToken: string;
   };
 
