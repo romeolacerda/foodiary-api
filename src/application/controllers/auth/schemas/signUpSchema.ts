@@ -4,8 +4,8 @@ export const signUpSchema = z.object({
   account: z.object({
     password: z
       .string()
-      .min(8, 'Password should be equal or higher than 8 characthers'),
-    email: z.string().min(1, 'Required is required').email('Invalid email'),
+      .min(8, '"email" should be equal or higher than 8 characthers'),
+    email: z.string().min(1, '"required" is required').email('Invalid email'),
   }),
 });
 

@@ -30,9 +30,9 @@ export class AuthGateway {
 
     if (
       !AuthenticationResult?.AccessToken ||
-      !AuthenticationResult?.RefreshToken
+      !AuthenticationResult.RefreshToken
     ) {
-      throw new Error(`Cannot signup user: ${email}`);
+      throw new Error(`Cannot authenticate user: ${email}`);
     }
 
     return {
@@ -60,7 +60,9 @@ export class AuthGateway {
       throw new Error(`Cannot signup user: ${email}`);
     }
 
-    return { externalId };
+    return {
+      externalId,
+    };
   }
 
   async refreshToken({
@@ -78,7 +80,7 @@ export class AuthGateway {
       !AuthenticationResult?.AccessToken ||
       !AuthenticationResult.RefreshToken
     ) {
-      throw new Error('Cannot refresh token');
+      throw new Error('Cannot refresh token.');
     }
 
     return {
