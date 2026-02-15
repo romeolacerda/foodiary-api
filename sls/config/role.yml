@@ -5,4 +5,4 @@ statements:
       - dynamodb:Query
     Resource:
       - !GetAtt MainTable.Arn
-      - !Sub '${MainTable.Arn}/index/*'
+      - !Sub "${MainTable.Arn}/index/*"

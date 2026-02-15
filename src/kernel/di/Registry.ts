@@ -1,4 +1,4 @@
-import { Constructor } from "@shared/types/Constructor";
+import { Constructor } from '@shared/types/Constructor';
 
 export class Registry {
   private static instance: Registry | undefined;
@@ -22,7 +22,7 @@ export class Registry {
       throw new Error(`${token} is already registered in the registry`);
     }
 
-    const deps = Reflect.getMetadata("design:paramtypes", impl) ?? [];
+    const deps = Reflect.getMetadata('design:paramtypes', impl) ?? [];
     // const deps = paramTypes.filter(boolean)
 
     this.providers.set(token, { impl, deps });
