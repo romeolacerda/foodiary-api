@@ -1,5 +1,6 @@
 import { InvalidRefreshToken } from '@application/errors/application/InvalidRefreshToken';
 import {
+  ForgotPasswordCommand,
   GetTokensFromRefreshTokenCommand,
   InitiateAuthCommand,
   SignUpCommand,
@@ -99,6 +100,17 @@ export class AuthGateway {
       // throw error;
     }
   }
+  async forgotPassowrd({
+    email,
+  }: AuthGateway.ForgotPasswordParams): Promise<void> {
+    const command = new ForgotPasswordCommand({
+      ClientId: this.appConfig.auth.cognito.client.id,
+      Username: email,
+      SecretHash: this.getSecretHash(email),
+    });
+
+    await cognitoClient.send(command);
+  }
 
   private getSecretHash(email: string): string {
     const { id, secret } = this.appConfig.auth.cognito.client;
@@ -137,5 +149,9 @@ export namespace AuthGateway {
   export type RefreshTokenResult = {
     accessToken: string;
     refreshToken: string;
+  };
+
+  export type ForgotPasswordParams = {
+    email: string;
   };
 }
