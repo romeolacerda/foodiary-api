@@ -1,4 +1,5 @@
 import { Controller } from '@application/contracts/Controller';
+import { BadRequest } from '@application/errors/http/BadRequest';
 import { ForgotPasswordUseCase } from '@application/usecases/auth/ForgotPasssword';
 import { Schema } from '@kernel/decorators/schema';
 import { Injectable } from '@kernel/di/Injectable';
@@ -20,17 +21,20 @@ export class ForgotPasswordController extends Controller<
   protected override async handle({
     body,
   }: Controller.Request<'public', ForgotPasswordBody>): Promise<
-    Controller.Response<ForgotPasswordController.Response>
-  > {
-    const { email } = body;
+    Controller.Response<ForgotPasswordController.Response>> {
+    try {
+      const { email } = body;
 
-    await this.forgotPasswordUseCase.execute({
-      email,
-    });
+      await this.forgotPasswordUseCase.execute({
+        email,
+      });
 
-    return {
-      statusCode: 204,
-    };
+      return {
+        statusCode: 204,
+      };
+    } catch {
+      throw new BadRequest('Failed. Try again.');
+    }
   }
 }
 
