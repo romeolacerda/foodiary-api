@@ -7,7 +7,7 @@
     "test": "echo \"Error: no test specified\" && exit 1",
     "typecheck": "tsc --noEmit",
     "prettier": "exec prettier . --write",
-    "dev:email": "email dev --dir src/infra/emails/templates"
+    "dev:email": "email dev --dir src/infra/emails/template"
   },
   "keywords": [],
   "author": "",
