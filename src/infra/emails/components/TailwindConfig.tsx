@@ -1,4 +1,4 @@
-import { Tailwind } from "@react-email/components";
+import { Tailwind } from "@react-email/tailwind";
 import React from "react";
 
 interface ITailwindConfigProps {
@@ -15,7 +15,7 @@ export default function TailwindConfig({ children }: ITailwindConfigProps) {
               foodiary: {
                 green: '#64A30D'
               },
-              gray:{
+              gray: {
                 200: '#F4F4F5',
                 400: '#E4E4E7',
                 600: '#A1A1AA'
@@ -29,3 +29,4 @@ export default function TailwindConfig({ children }: ITailwindConfigProps) {
     </Tailwind>
   );
 }
+
